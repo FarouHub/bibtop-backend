@@ -1,13 +1,18 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Course = mongoose.model('Course');
+Course = mongoose.model('course');
 
 exports.list_all_courses = function(req, res) {
+  console.log('call: list_all_courses');
   Course.find({}, function(err, course) {
+	console.log('err: ' + err);
+	console.log('course: ' + course);
     if (err)
       res.send(err);
     res.json(course);
+	
+	
   });
 };
 

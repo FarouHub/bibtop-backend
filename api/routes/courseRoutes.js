@@ -11,4 +11,8 @@ module.exports = function(app) {
     .get(courses.read_a_course)
     .put(courses.update_a_course)
     .delete(courses.delete_a_course);
+	
+	  app.route('/add')
+    .get(courses.create_a_course)
+	
 };

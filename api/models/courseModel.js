@@ -5,12 +5,10 @@ var Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
   
-  id: {
-    type: Number
-  },
   name: {
     type: String
-  },
+  }
+  /*,
   description: {
     type: String
   },
@@ -23,7 +21,7 @@ var CourseSchema = new Schema({
     default: Date.now
   },
   distance: {
-    type: Number
+    type: String
   },
   type: {
     type: [{
@@ -31,7 +29,7 @@ var CourseSchema = new Schema({
       enum: ['Trail', 'Cross', 'Course']
     }],
     default: ['Course']
-  }
+  }*/
 });
 
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('course', CourseSchema);
