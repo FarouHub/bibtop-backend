@@ -7,12 +7,12 @@ module.exports = function(app) {
     .get(courses.list_all_courses)
     .post(courses.create_a_course);
 
+  app.route('/courses/search')
+    .get(courses.search_courses);
+
   app.route('/courses/:courseId')
     .get(courses.read_a_course)
     .put(courses.update_a_course)
     .delete(courses.delete_a_course);
-	
-	  app.route('/add')
-    .get(courses.create_a_course)
 	
 };

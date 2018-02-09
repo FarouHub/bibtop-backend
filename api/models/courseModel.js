@@ -5,8 +5,38 @@ var Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
   
-  name: {
+  title: {
     type: String
+  },
+  date: {
+    type: Date
+  },
+  region: {
+    type: String
+  },
+  commune: {
+    type: String
+  },
+  contact: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  mail: {
+    type: String
+  },
+  urlid: {
+    type: String
+  },
+  random: {
+	type: String  
+  },
+  lat: {
+    type: Number  
+  },
+  long: {
+    type: Number  
   }
   /*,
   description: {

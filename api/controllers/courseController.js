@@ -4,15 +4,36 @@ var mongoose = require('mongoose'),
 Course = mongoose.model('course');
 
 exports.list_all_courses = function(req, res) {
-  console.log('call: list_all_courses');
   Course.find({}, function(err, course) {
-	console.log('err: ' + err);
-	console.log('course: ' + course);
     if (err)
       res.send(err);
     res.json(course);
-	
-	
+  });
+};
+
+exports.search_courses = function(req, res) {
+
+  let query = {};
+  console.log(req.query);
+  if(req.query.title){
+    query.title = {$regex : req.query.title};
+  }
+  if(req.query.ville){
+    query.commune = {$regex : req.query.ville};
+  }
+  if(req.query.lat){
+    query.lat = {$gte:(+req.query.lat-0.5), $lte:(+req.query.lat+0.5) };
+  }
+  if(req.query.long){
+    query.long = {$gte:(+req.query.long-0.5), $lte:(+req.query.long+0.5) };
+  }
+
+  console.log(query);
+
+  Course.find(query, function(err, course) {
+    if (err)
+      res.send(err);
+    res.json(course);
   });
 };
 
