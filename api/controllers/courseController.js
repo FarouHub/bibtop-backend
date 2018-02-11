@@ -22,10 +22,10 @@ exports.search_courses = function(req, res) {
     query.commune = {$regex : req.query.ville};
   }
   if(req.query.lat){
-    query.lat = {$gte:(+req.query.lat-0.5), $lte:(+req.query.lat+0.5) };
+    query.lat = {$gte:(+req.query.lat-0.4), $lte:(+req.query.lat+0.4) };
   }
   if(req.query.long){
-    query.long = {$gte:(+req.query.long-0.5), $lte:(+req.query.long+0.5) };
+    query.long = {$gte:(+req.query.long-0.4), $lte:(+req.query.long+0.4) };
   }
 
   console.log(query);
