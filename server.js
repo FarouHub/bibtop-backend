@@ -1,3 +1,4 @@
+var config = require('./config');
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
@@ -8,8 +9,7 @@ var express = require('express'),
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-//mongoose.connect("mongodb://spartan:pioupiou123@cluster0-shard-00-00-hfhr2.mongodb.net:27017,cluster0-shard-00-01-hfhr2.mongodb.net:27017,cluster0-shard-00-02-hfhr2.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"); 
-mongoose.connect("mongodb://localhost/todorace");
+mongoose.connect(config.mongodb); 
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
