@@ -4,4 +4,4 @@
 /node_modules
 
 #conf
-server.conf
+config.js
