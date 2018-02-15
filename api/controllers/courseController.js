@@ -28,7 +28,7 @@ exports.search_courses = function(req, res) {
     query.long = {$gte:(+req.query.long-0.4), $lte:(+req.query.long+0.4) };
   }
 
-  console.log(query);
+  //console.log(query);
 
   Course.find(query, function(err, course) {
     if (err)
