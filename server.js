@@ -3,7 +3,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Course = require('./api/models/courseModel'),
+  Epreuve = require('./api/models/epreuveModel'),
   Ville = require('./api/models/villeModel'),  //created model loading here
   bodyParser = require('body-parser');
   
@@ -20,9 +20,10 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routesCourse = require('./api/routes/courseRoutes'); //importing route
+var routesEpreuve = require('./api/routes/epreuveRoutes'); //importing route
 var routesVille = require('./api/routes/villeRoutes');
-routesCourse(app); //register the route
+
+routesEpreuve(app); //register the route
 routesVille(app);
 
 app.listen(port);
