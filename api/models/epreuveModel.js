@@ -10,6 +10,7 @@ var PriceSchema = new Schema({
 
 var EpreuveSchema = new Schema({
     name: String,
+    type: String,
     description: String,
     distance: Number,
     maxinscription : Number,

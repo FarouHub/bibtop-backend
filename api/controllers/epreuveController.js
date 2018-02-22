@@ -47,13 +47,41 @@ exports.search_epreuves = function(req, res) {
     coefLon = 0.4;
   }
 
-
-
   if(req.query.lat){
     query.lat = {$gte:(+req.query.lat-coefLat), $lte:(+req.query.lat+coefLat) };
   }
   if(req.query.long){
     query.long = {$gte:(+req.query.long-coefLon), $lte:(+req.query.long+coefLon) };
+  }
+
+  if(req.query.start_date && req.query.end_date){
+    query.start_date = {$gte: new Date(req.query.start_date+'T00:00:00'), $lte: new Date(req.query.end_date+'T00:00:00')};
+  }else if(req.query.start_date){
+    query.start_date = {$gte: new Date(req.query.start_date+'T00:00:00')};
+  }else if(req.query.end_date){
+    query.start_date = {$lte: new Date(req.query.end_date+'T00:00:00')};
+  }
+  
+  if(req.query.distance){
+    query.distance = {$lte: +req.query.distance};
+  }
+
+  let mTypes = [];
+  if(req.query.trail){
+    mTypes.push(req.query.trail);
+  }
+  if(req.query.route){
+    mTypes.push(req.query.route);
+  }
+  if(req.query.cross){
+    mTypes.push(req.query.cross);
+  }
+  if(req.query.bikeandrun){
+    mTypes.push(req.query.bikeandrun);
+  }
+
+  if(mTypes.length > 0){
+    query.type = { $in: mTypes };
   }
 
   Epreuve.find(query).populate('epreuves').exec(function(err, epreuves) {
