@@ -31,7 +31,7 @@ var EpreuveSchema = new Schema({
     place_depart: String,
     hour_depart: String,
     service:String,
-    recompences: String,
+    recompense: String,
     animation: String,
     epreuves: [{ type: Schema.Types.ObjectId, ref: 'epreuve' }],
     prices: [PriceSchema]
