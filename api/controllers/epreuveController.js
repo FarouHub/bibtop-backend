@@ -62,8 +62,12 @@ exports.search_epreuves = function(req, res) {
     query.start_date = {$lte: new Date(req.query.end_date+'T00:00:00')};
   }
   
-  if(req.query.distance){
-    query.distance = {$lte: +req.query.distance};
+  if(req.query.distanceMax && req.query.distanceMin){
+    query.distance = {$lte: +req.query.distanceMax, $gte: +req.query.distanceMin};
+  }else if(req.query.distanceMin){
+    query.distance = {$gte: +req.query.distanceMin};
+  }else if(req.query.distanceMax){
+    query.distance = {$lte: +req.query.distanceMax};
   }
 
   let mTypes = [];
