@@ -30,21 +30,13 @@ exports.search_epreuves = function(req, res) {
     query.commune = {$regex : req.query.ville};
   }
 
-  let coefLat = 0.4;
-  let coefLon = 0.4;
+  let coefLat = 0.45;
+  let coefLon = 0.65;
 
-  if(req.query.zoom < 5){
-    coefLat = 5;
-    coefLon = 7;
-  }else if(req.query.zoom >= 5 && req.query.zoom < 7){
-    coefLat = 4.5;
-    coefLon = 6;
-  }else if(req.query.zoom >= 7 && req.query.zoom < 10){
-    coefLat = 2;
-    coefLon = 1;
-  }else if(req.query.zoom >= 10){
-    coefLat = 0.4;
-    coefLon = 0.4;
+  if(req.query.rayon){
+    let rayon = +req.query.rayon;
+    coefLat = rayon/111;
+    coefLon = rayon/76;
   }
 
   if(req.query.lat){
