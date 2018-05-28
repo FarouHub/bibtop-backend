@@ -80,10 +80,9 @@ exports.search_epreuves = function(req, res) {
     query.type = { $in: mTypes };
   }
 
-  Epreuve.find(query).populate('epreuves').exec(function(err, epreuves) {
+  Epreuve.find(query).populate('epreuves').sort({ "start_date": 1, "title": 1, "distance": -1 }).limit(15).skip((+req.query.page-1)*15).exec(function(err, epreuves) {
     if (err)
       res.send(err);
     res.json(epreuves);
   });
 };
-
