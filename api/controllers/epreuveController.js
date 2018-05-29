@@ -24,10 +24,7 @@ exports.search_epreuves = function(req, res) {
   let query = {};
   //console.log(req.query);
   if(req.query.title){
-    query.title = {$regex : req.query.title};
-  }
-  if(req.query.ville){
-    query.commune = {$regex : req.query.ville};
+    query.title_req = {$regex : req.query.title};
   }
 
   let coefLat = 0.45;
@@ -80,7 +77,12 @@ exports.search_epreuves = function(req, res) {
     query.type = { $in: mTypes };
   }
 
-  Epreuve.find(query).populate('epreuves').sort({ "start_date": 1, "title": 1, "distance": -1 }).limit(15).skip((+req.query.page-1)*15).exec(function(err, epreuves) {
+  Epreuve.find(query)
+    .populate('epreuves')
+    .sort({ "start_date": 1, "title": 1, "distance": 1 })
+    .limit(15)
+    .skip((+req.query.page-1)*15)
+    .exec(function(err, epreuves) {
     if (err)
       res.send(err);
     res.json(epreuves);
