@@ -49,6 +49,8 @@ exports.search_epreuves = function(req, res) {
     query.start_date = {$gte: new Date(req.query.start_date+'T00:00:00')};
   }else if(req.query.end_date){
     query.start_date = {$lte: new Date(req.query.end_date+'T00:00:00')};
+  }else{
+    query.start_date = {$gte: new Date()};
   }
   
   if(req.query.distanceMax && req.query.distanceMin){
