@@ -6,4 +6,7 @@ module.exports = function(app) {
   app.route('/villes/:villeName')
     .get(villes.read_a_ville);
 
+  app.route('/villes-auto/:villeName')
+    .get(villes.read_villes);
+
 };

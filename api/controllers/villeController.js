@@ -12,3 +12,11 @@ exports.read_a_ville = function(req, res) {
   });
 };
 
+exports.read_villes = function(req, res) {
+  // TODO: {$regex: req.params.villeName}
+  Ville.find({ SORT_NAME_RO: {$regex: req.params.villeName}, NAME_RANK: '1'}, function(err, villes) {
+    if (err)
+      res.send(err);
+    res.json(villes);
+  });
+};
