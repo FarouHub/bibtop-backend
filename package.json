@@ -17,8 +17,9 @@
   "author": "BibTop",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2",
-    "mongoose": "^4.13.11"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^4.13.18"
   },
   "devDependencies": {
     "nodemon": "^1.14.3"
